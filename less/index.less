@@ -1,0 +1,365 @@
+
+@main-color: #e92322;
+
+// bootstrap把所有a变成蓝色 需要覆盖 而且下划线使用 hover为了 focus伪类添加 使用对应伪类覆盖
+a{
+    color:#666;
+    &:hover{
+        color:#666;
+        text-decoration: none;
+    }
+    &:focus{
+        color:#666;
+        text-decoration: none;
+    }
+}
+/* 头部样式 */
+#header{
+    border-bottom: 1px solid #ccc;
+    // 父元素不要写死高度 做响应式布局 高度不固定的 
+    .container{
+        .row{
+            // 表示是行的儿子div 一定是列
+            > div{
+                line-height: 40px;
+                font-size: 12px;
+                // 相邻的后面的div
+                &~div{
+                    border-left: 1px solid #ccc;
+                }
+                .btn-link{
+                    color:#666;
+                }
+                .mobile-link{
+                    display: block;
+                    position: relative;
+                    img{
+                        // 图标不能占位置
+                        position: absolute;
+                        // 设置定位元素水平居中
+                        left: 50%;
+                        transform: translateX(-50%);
+                        top: 40px;
+                        display: none;
+                    }
+                    // 鼠标上移显示图片
+                    &:hover{
+                        img{
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#nav{
+    background-color: #fff;
+    margin-bottom: 0px;
+    .container{
+
+        .navbar-header{
+
+            .navbar-toggle{
+                margin-top: 23px;
+            }
+            // 品牌logo
+            .navbar-brand{
+                line-height: 50px;
+                height: 80px;
+                .icon-icon{
+                    font-size: 30px;
+                    color: @main-color;
+                }
+                .icon-logo{
+                    font-size: 28px;
+                    color: #333;
+                }
+            }
+        }
+        .navbar-collapse{
+            .navbar-nav{
+                li{
+                    a{
+                        line-height: 50px;
+                    }
+                    &:hover{
+                        border-bottom: 2px solid @main-color;
+                    }
+                    &.active{
+                        a{
+                            background-color: #fff;
+                            border-bottom: 2px solid @main-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 轮播图区域样式
+#slide{
+    .large-image{
+        width: 100%;
+        height: 410px;
+    }
+    .small-image{
+        width: 100%;
+    }
+}
+
+// 特色区域
+#feature{
+    padding: 40px 0;
+    .container{
+        .row{
+            > div{
+                .media{
+                    margin-bottom: 10px;
+                    a{
+                        &:hover{
+                            color: @main-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 立即预约区域
+#booking{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+
+    .text-danger{
+        color: @main-color;
+    }
+}
+
+// 特别推荐
+#products{
+    background-color: #f5f5f5;
+    padding: 40px 0;
+    .container{
+        .swiper-container{
+            width: 100%;
+                .swiper-slide{
+                    width: auto;
+                    ul{
+                        width: auto;
+                    }
+            }
+        }
+        .nav-tabs{            
+                li{
+                    
+                    a{
+                        font-size: 18px;
+                        height: 48px;
+                        &:hover{
+                            background-color: transparent;
+                            border: 1px solid transparent;
+                        }
+                    }
+                    &.active{
+                        a{
+                            background-color: #f5f5f5;
+                            border: 1px solid transparent;
+                            border-bottom: 2px solid @main-color;
+                        }
+                    }
+                }
+            }
+            .tab-content{
+                .tab-pane{
+                    > .row{
+                        > div{
+                            .product{
+                                margin-top: 20px;
+                                background-color: #fff;
+                                display: flex;
+                                // 给单独的active盒子设置红色背景色白色字体颜色
+                                &.active{
+                                    background-color: @main-color;
+                                    color: #fff;
+                                    position: relative;
+                                    &::before{
+                                         // 直接使用编码和字体也可以使用图标
+                                        content: "\e915";
+                                        font-family: 'itcast';
+                                        font-size: 30px;
+                                        position: absolute;
+                                        left: 0;
+                                        top: -6px;
+                                    }
+                                }
+                                .left{
+                                    flex: 1;
+                                    // height: 160px;
+                                    padding: 15px;
+                                    h4{
+                                        text-align: center;
+                                    }
+                                    .row{
+                                        > div{
+                                            margin-bottom: 10px;
+                                            p{
+                                                margin-bottom: 0;
+                                            }
+                                            &:nth-child(2n){
+                                                text-align: right;
+                                            }
+                                        }
+                                    }
+                                }
+                                .right{
+                                    width: 100px;
+                                    // height: 160px;
+                                    border: 1px dashed #ccc;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+                                    position: relative;
+                                    p{
+                                        text-align: center;
+                                        strong{
+                                            font-size: 30px;
+                                        }
+                                    }
+                                    &::before,&::after{
+                                        content: '';
+                                        position: absolute;
+                                        width: 16px;
+                                        height: 16px;
+                                        background-color: #f5f5f5;
+                                        border-radius: 50%;
+                                        left: -8px;
+                                    }
+                                    &::before{
+                                        top: -8px;
+                                    }
+                                    &::after{
+                                        bottom: -8px;
+                                    }
+                                    .tooltips{
+                                        position: absolute;
+                                        top: 5px;
+                                        text-align: center;
+                                        width: 100%;
+                                        .tooltip1{
+                                            border: 1px solid yellow;
+                                            color: blue;
+                                        }
+                                        .tooltip2{
+                                            border: 1px solid green;
+                                            color: red;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+// 新闻模块
+#news{
+    padding: 40px 0;
+    .container{
+        .row{
+            > div{
+                h4{
+                    text-align: center;
+                    line-height: 40px;
+                    border-bottom: 1px solid #ccc;
+                    position: relative;
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 50%;
+                        right: -10px;
+                        bottom: -5px;
+                    }
+                }
+                .nav-tabs{
+                    border-bottom: 0;
+                    // 只要小屏幕和超小屏幕需要改
+                    @media(max-width:992px){
+                        li{
+                            width: 25%;
+                            // 因为a是块级元素使用块级元素居中方式
+                            display: flex;
+                            justify-content: center;
+                            a{
+                                width: 60px;
+                                //使用margin：0 auto 块级元素居中
+                                margin: 0px auto;
+                            }
+                        }
+                    }
+                    li{
+                        a{
+                            border-radius: 50%;
+                            border: 0;
+                            color: #ccc;
+                            margin-bottom: 10px;
+                            i{
+                                font-size: 30px;
+                            }
+                            &:hover{
+                                background-color: @main-color;
+                            }
+                        }
+                        &.active{
+                            a{
+                                background-color: @main-color;
+                            }
+                        }
+                    }
+                }
+                .tab-content{
+                    ul{
+                        padding-left: 30px;
+                        li{
+                            line-height: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#footer{
+    .container{
+        h3{
+            text-align: center;
+        }
+        > div{
+            .row{
+                a{
+                    display: block;
+                    i{
+                        font-size: 60px;
+                    }
+                    &:hover{
+                        color: @main-color;
+                    }
+                }
+                
+            }
+        }
+    }
+}
